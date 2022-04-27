@@ -12,6 +12,9 @@ export default function Sidebar() {
             <div className="text">
                 <p>Everything you wanted to know about your favorite pocket monsters!</p>
             </div>
+            <div className="search">
+                <input type="text" placeholder="Search" />
+            </div>
             <div className="content">
                 <ul>
                     <li>#001 - Bulbasaur</li>

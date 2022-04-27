@@ -1,12 +1,18 @@
 import styled from "styled-components";
 
 export const SidebarStyles = styled.div`
-  .search{
+  .search {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 1;
+    margin: 1rem;
     width: 80%;
+  }
+    .search input{
+    width: 10rem;
+    height: 2rem;
+    border-style: none;
+    border-radius: 50px;
   }
 
   .aside {

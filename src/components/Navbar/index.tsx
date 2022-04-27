@@ -1,7 +1,7 @@
 import { Container } from './styles'
 import Image from 'next/image'
 
-export default function Main() {
+export default function Navbar() {
   return (
     <Container>
       <nav className="container">
