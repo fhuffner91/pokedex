@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { MainPageStyles } from "./styles";
 
@@ -5,10 +6,11 @@ export default function MainPage() {
   const [pokemon, setPokemon] = useState([]);
   const [pokemonName, setPokemonName] = useState([]);
   const [pokemonId, setPokemonId] = useState([]);
+  const [pokemonType, setPokemonType] = useState([]);
+  const [pokemonImage, setPokemonImage] = useState([]);
 
-  
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
+    fetch("https://pokeapi.co/api/v2/pokemon/")
       .then((res) => res.json())
       .then((data) => {
         setPokemon(data.results);
@@ -20,6 +22,12 @@ export default function MainPage() {
             (pokemon: { url: string }) => pokemon.url.split("/")[6]
           )
         );
+        setPokemonType(
+          data.results.map((pokemon: { type: string }) => pokemon.type)
+        );
+        setPokemonImage(
+          data.results.map((pokemon: { url: string }) => pokemon.url)
+        );
         console.log(data.results);
       });
   }, []);
@@ -29,7 +37,9 @@ export default function MainPage() {
       <div className="main">
         <div className="part1">
           <h1>{pokemonName[0]}</h1>
-          <div className="card"></div>
+          <div className="card">
+            <Image src="/images/thumbnails-compressed/001.png" width="100px" height="100px"/>
+          </div>
           <div className="type">
             <p>Type</p>
             <button>GRASS</button>
@@ -37,7 +47,7 @@ export default function MainPage() {
           </div>
           <div className="heightAndWeight">
             <div className="height">
-              <p>height: 2'04'' / 0.7m</p>
+              <p>height: 204 / 0.7m</p>
             </div>
             <div className="weight">
               <p>weight: 15.2lbs. / 6.9kg</p>

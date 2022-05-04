@@ -1,4 +1,4 @@
-import { ApolloProvider } from "@apollo/client";
+import { ApolloProvider, useQuery } from "@apollo/client";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -7,6 +7,7 @@ import { SidebarStyles } from "./styles";
 
 
 export default function Sidebar() {
+
   const [pokemon, setPokemon] = useState([]);
   const [pokemonName, setPokemonName] = useState([]);
   const [pokemonId, setPokemonId] = useState([]);
@@ -21,7 +22,7 @@ export default function Sidebar() {
       .then((res) => res.json())
       .then((data) => {
         setPokemon(data.results);
-        setPokemonName(data.results.map((pokemon: { name: any; }) => pokemon.name));
+        setPokemonName(data.results.map((pokemon: { name: string; }) => pokemon.name));
         setPokemonId(data.results.map((pokemon: { url: string; }) => pokemon.url.split('/')[6]));
         console.log(data.results);
       })
